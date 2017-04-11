@@ -1,0 +1,116 @@
+<div class="page-content-inner">
+
+  <!-- Dashboard -->
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="pull-right" style="padding: 5px;">
+        <button class="btn btn-primary" style="padding: 5px;" ng-click="open('lg')"><i class="fa fa-plus" aria-hidden="true"></i>
+           Agregar Cliente Potencial</button>
+      </div>
+    </div>
+
+    <div class="col-xl-12">
+
+      <div class="panel panel-with-borders">
+
+        <div class="panel-body">
+
+          <div class="nav-tabs-horizontal margin-bottom-20">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" href="javascript: void(0);" data-toggle="tab" data-target="#h1" role="tab">Clientes Potenciales</a>
+              </li>
+            </ul>
+          </div>
+          <div class="table-responsive" >
+            <table datatable="ng" class="table table-hover" id="example1" width="100%">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Equipment</th>
+                <th>Comments</th>
+                <th>Fecha</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="user in users">
+                <td>{{user.first_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.equipment}}</td>
+                <td>{{user.comments}}</td>
+                <td>{{user.date_joined | date:'dd/MM/yyyy h:mma'}}</td>
+                <td>
+                  <div class="btn-group margin-inline">
+                    <button type="button" class="btn btn-sm btn-small btn-primary btn-block" data-ng-click="editClient(user)"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-sm btn-small btn-danger btn-block" data-ng-click="deleteClient(user)"><i class="fa fa-remove"></i></button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Dashboard -->
+
+</div>
+
+
+<div>
+  <script type="text/ng-template" id="myModalContent.html">
+    <form name="client" ng-submit="ok()">
+      <div class="modal-header">
+        <h3 class="modal-title">Agregar Cliente Potencial</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="col-xl-6">
+            <input type="text" name="nombre" data-ng-model="user.first_name" class="form-control" placeholder="Nombre Completo" required>
+          </div>
+          <div class="col-xl-6">
+            <input type="text" name="email" data-ng-model="user.email" class="form-control" placeholder="Email" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-12">
+            <textarea name="address" data-ng-model="user.address" class="form-control" placeholder="Direccion" required></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-6">
+            <input type="text" name="equipmen" data-ng-model="user.equipment" class="form-control" placeholder="Equipo" required>
+          </div>
+          <div class="col-md-6">
+            <input type="text" name="service" data-ng-model="user.service" class="form-control" placeholder="Servicios" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-6">
+            <input type="text" name="phone" data-ng-model="user.phone" class="form-control" placeholder="Telefono" required>
+          </div>
+          <div class="col-md-6">
+            <input type="text" name="phone2" data-ng-model="user.phone2" class="form-control" placeholder="Telefono1" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-12">
+            <textarea name="address" data-ng-model="user.comments" class="form-control" placeholder="Comentarios"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success pull-left" type="button"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar SMS</button>
+        <button class="btn btn-warning pull-left" type="button"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar Email</button>
+        <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Guardar</button>
+        <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button>
+      </div>
+    </form>
+  </script>
+
+</div>

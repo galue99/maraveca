@@ -1,0 +1,109 @@
+<div class="page-content-inner">
+
+  <!-- Dashboard -->
+  <div class="dashboard-container">
+
+    <div class="widget widget-four background-transparent">
+      <div class="row">
+        <div class="col-xl-3 col-lg-6 col-sm-6 col-xs-12">
+          <div class="step-block">
+                        <span class="step-digit">
+                            <i class="icmn-users"><!-- --></i>
+                        </span>
+            <div class="step-desc">
+              <span class="step-title">Clientes</span>
+              <p>{{clients.length}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-sm-6 col-xs-12">
+          <div class="step-block">
+                        <span class="step-digit">
+                            <i class="icmn-users"><!-- --></i>
+                        </span>
+            <div class="step-desc">
+              <span class="step-title">C. Potenciales</span>
+              <p>{{clients_potentials.length}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-sm-6 col-xs-12">
+          <div class="step-block step-warning">
+                        <span class="step-digit">
+                            <i class="icmn-stats-growth"><!-- --></i>
+                        </span>
+            <div class="step-desc">
+              <span class="step-title">Daily Sales</span>
+              <p>
+                Total: 765
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-6 col-sm-6 col-xs-12">
+          <div class="step-block step-primary">
+                        <span class="step-digit">
+                            <i class="icmn-stats-dots"><!-- --></i>
+                        </span>
+            <div class="step-desc">
+              <span class="step-title">Bandwidth</span>
+              <p>
+                <span>160.32 GB/S</span>
+                <span>&nbsp;</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="panel panel-with-borders">
+        <div class="panel-body">
+          <div class="nav-tabs-horizontal margin-bottom-20">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" href="javascript: void(0);" data-toggle="tab" data-target="#h1" role="tab">Clientes Potenciales</a>
+              </li>
+            </ul>
+          </div>
+          <table class="table table-hover nowrap margin-bottom-0" id="example1" width="100%">
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Equipment</th>
+              <th>Comments</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Equipment</th>
+              <th>Comments</th>
+            </tr>
+            </tfoot>
+            <tbody>
+            <tr ng-repeat="user in users">
+              <td>{{user.first_name}}</td>
+              <td>{{user.address}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.phone}}</td>
+              <td>{{user.equipment}}</td>
+              <td>{{user.comments}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Dashboard -->
+
+</div>

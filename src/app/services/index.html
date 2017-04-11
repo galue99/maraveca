@@ -1,0 +1,164 @@
+<div class="page-content-inner">
+
+  <!-- Dashboard -->
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="pull-right" style="padding: 5px;">
+        <button class="btn btn-primary" style="padding: 5px;" ng-click="open('lg')"><i class="fa fa-plus" aria-hidden="true"></i>
+          Agregar Servicio</button>
+      </div>
+    </div>
+
+    <div class="col-xl-12">
+
+      <div class="panel panel-with-borders">
+
+        <div class="panel-body">
+
+          <div class="nav-tabs-horizontal margin-bottom-20">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" href="javascript: void(0);" data-toggle="tab" data-target="#h1" role="tab">Servicios</a>
+              </li>
+            </ul>
+          </div>
+          <div class="table-responsive">
+            <table datatable="ng" class="table table-hover" id="example1" width="100%">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Equipment</th>
+                <th>Comments</th>
+                <th>Fecha</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="user in users">
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.equipment}}</td>
+                <td>{{user.comments}}</td>
+                <td>{{user.date_joined | date:'dd/MM/yyyy h:mma'}}</td>
+                <td>
+                  <div class="btn-group margin-inline">
+                    <button type="button" class="btn btn-sm btn-small btn-primary btn-block" data-ng-click="editClient(user)"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-sm btn-small btn-danger btn-block" data-ng-click="deleteClient(user)"><i class="fa fa-remove"></i></button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Dashboard -->
+
+</div>
+
+
+<div>
+  <script type="text/ng-template" id="myModalContent.html">
+    <form id="client" name="clientForm" ng-submit="ok()" novalidate>
+      <div class="modal-header">
+        <h3 class="modal-title">Agregar Servicios</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="col-xl-4">
+            <select ng-options="item.id as item.name for item in plans" name="plan_id" class="form-control" data-ng-model="services.plan_id" style="width:100%" required>
+              <option value="">Seleccione un Plan</option>
+            </select>
+          </div>
+          <div class="col-xl-4">
+            <select ng-options="item.id as item.first_name + ' ' + item.last_name for item in users" name="client_id" class="form-control" data-ng-model="services.client_id" style="width:100%" required>
+              <option value="">Seleccione un Cliente</option>
+            </select>
+          </div>
+          <div class="col-xl-4">
+            <input id="validation-email"
+                   class="form-control"
+                   placeholder="Fecha de Instalacion"
+                   ng-model="services.install_date"
+                   name="install_date"
+                   type="date"
+                   required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-4">
+            <input id="validation-email"
+                   class="form-control"
+                   placeholder="Fecha de Recibo"
+                   ng-model="services.invoice_date"
+                   name="invoice_date"
+                   type="date"
+                   required>
+          </div>
+          <div class="col-xl-4">
+            <input type="number" name="price" data-ng-model="services.install_price"
+                   class="form-control"
+                   placeholder="Precio de Instalacion"
+                   required>
+          </div>
+          <div class="col-xl-4">
+            <input type="number" name="credit_Days" data-ng-model="services.credit_days"
+                   class="form-control"
+                   placeholder="Dias de Creditos"
+                   required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-4">
+            <input id="validation-email"
+                   class="form-control"
+                   placeholder="Cotizacion Mensual"
+                   ng-model="services.monthly_cuote"
+                   name="montly_cuote"
+                   type="text"
+                   required>
+          </div>
+          <div class="col-xl-4">
+            <input id="validation-email"
+                   class="form-control"
+                   placeholder="Fecha de Inicio"
+                   ng-model="services.start_date"
+                   name="start_date"
+                   type="date"
+                   required>
+          </div>
+          <div class="col-xl-4">
+            <select type="number" name="credit_Days" data-ng-model="services.notificatios_method"
+                   class="form-control"
+                   required>
+              <option value="">Selecione metodo de Notificacion</option>
+              <option value="1">SMS</option>
+              <option value="2">Email</option>
+              </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-12">
+             <textarea name="address" data-ng-model="services.comments"
+                       class="form-control"
+                       placeholder="Comentarios">
+
+            </textarea>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Guardar</button>
+        <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button>
+      </div>
+    </form>
+  </script>
+
+</div>

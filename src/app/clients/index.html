@@ -1,0 +1,169 @@
+<div class="page-content-inner">
+
+  <!-- Dashboard -->
+  <div class="row">
+    <div class="col-xl-12">
+      <div class="pull-right" style="padding: 5px;">
+        <button class="btn btn-primary" style="padding: 5px;" ng-click="open('lg')"><i class="fa fa-plus" aria-hidden="true"></i>
+          Agregar Cliente</button>
+      </div>
+    </div>
+
+    <div class="col-xl-12">
+
+      <div class="panel panel-with-borders">
+
+        <div class="panel-body">
+
+          <div class="nav-tabs-horizontal margin-bottom-20">
+            <ul class="nav nav-tabs" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" href="javascript: void(0);" data-toggle="tab" data-target="#h1" role="tab">Clientes</a>
+              </li>
+            </ul>
+          </div>
+          <div class="table-responsive">
+            <table datatable="ng" class="table table-hover" id="example1" width="100%">
+              <thead>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Equipment</th>
+                <th>Comments</th>
+                <th>Fecha</th>
+                <th>Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr ng-repeat="user in users">
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.address}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.equipment}}</td>
+                <td>{{user.comments}}</td>
+                <td>{{user.date_joined | date:'dd/MM/yyyy h:mma'}}</td>
+                <td>
+                  <div class="btn-group margin-inline">
+                    <button type="button" class="btn btn-sm btn-small btn-primary btn-block" data-ng-click="editClient(user)"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-sm btn-small btn-danger btn-block" data-ng-click="deleteClient(user)"><i class="fa fa-remove"></i></button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Dashboard -->
+
+</div>
+
+
+<div>
+  <script type="text/ng-template" id="myModalContent.html">
+    <form id="client" name="clientForm" ng-submit="ok()" novalidate>
+      <div class="modal-header">
+        <h3 class="modal-title">Agregar Clientes</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="col-xl-4">
+            <input type="text" name="nombre" data-ng-model="user.first_name"
+                   class="form-control"
+                   placeholder="Nombres"
+                   required>
+          </div>
+          <div class="col-xl-4">
+            <input type="text" name="nombre" data-ng-model="user.last_name"
+                   class="form-control"
+                   placeholder="Apellidos"
+                   required>
+          </div>
+          <div class="col-xl-4">
+            <input id="validation-email"
+                   class="form-control"
+                   placeholder="Email"
+                   ng-model="user.email"
+                   name="validation[email]"
+                   type="text"
+                   data-validation="[EMAIL]" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-12">
+            <textarea name="address" data-ng-model="user.address"
+                      class="form-control"
+                      placeholder="Direccion"
+                      required></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-4 rowlla">
+
+            <div class="col-xl-3">
+              <select name="type_dni" ng-model="user.type_dni" class="form-control" required>
+                <option value="E">E</option>
+                <option value="V">V</option>
+                <option value="J">J</option>
+              </select>
+            </div>
+            <div class="col-xl-9">
+              <input type="text" name="dni" data-ng-model="user.dni"
+                     class="form-control"
+                     placeholder="Cedula o Rif"
+                     required>
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <input type="date" name="birthdate" data-ng-model="user.birthdate"
+                   class="form-control"
+                   placeholder="Fecha de nacimiento"
+                   required>
+          </div>
+          <div class="col-md-4">
+            <select name="" id="" class="form-control">
+              <option value="1">Sin Impuesto</option>
+              <option value="2">Con Impuesto</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-6">
+            <input type="text" name="phone" data-ng-model="user.phone"
+                   class="form-control"
+                   placeholder="Telefono"
+                   required>
+          </div>
+          <div class="col-md-6">
+            <input type="text" name="phone2" data-ng-model="user.phone2"
+                   class="form-control"
+                   placeholder="Telefono1"
+                   required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-12">
+            <textarea name="address" data-ng-model="user.comments"
+                      class="form-control"
+                      placeholder="Comentarios">
+
+            </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success pull-left" type="button"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar SMS</button>
+        <button class="btn btn-warning pull-left" type="button"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar Email</button>
+        <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Guardar</button>
+        <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button>
+      </div>
+    </form>
+  </script>
+
+</div>
