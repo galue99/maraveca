@@ -27,11 +27,8 @@
               <thead>
               <tr>
                 <th>Name</th>
-                <th>Address</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Equipment</th>
-                <th>Comments</th>
                 <th>Fecha</th>
                 <th>Actions</th>
               </tr>
@@ -39,16 +36,13 @@
               <tbody>
               <tr ng-repeat="user in users">
                 <td>{{user.first_name}} {{user.last_name}}</td>
-                <td>{{user.address}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.phone}}</td>
-                <td>{{user.equipment}}</td>
-                <td>{{user.comments}}</td>
-                <td>{{user.date_joined | date:'dd/MM/yyyy h:mma'}}</td>
+                <td>{{user.date_joined | date:'dd/MM/yyyy'}}</td>
                 <td>
-                  <div class="btn-group margin-inline">
-                    <button type="button" class="btn btn-sm btn-small btn-primary btn-block" data-ng-click="editClient(user)"><i class="fa fa-pencil"></i></button>
-                    <button type="button" class="btn btn-sm btn-small btn-danger btn-block" data-ng-click="deleteClient(user)"><i class="fa fa-remove"></i></button>
+                  <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-primary" data-ng-click="editClient(user)" title="Editar Cliente Potencial"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-danger" data-ng-click="deleteClient(user)" title="Eliminar Cliente Potencial"><i class="fa fa-remove"></i></button>
                   </div>
                 </td>
               </tr>
@@ -66,7 +60,7 @@
 
 <div>
   <script type="text/ng-template" id="myModalContent.html">
-    <form id="client" name="clientForm" ng-submit="ok()" novalidate>
+    <form id="client" name="clientForm" ng-submit="ok(clientForm)" novalidate>
       <div class="modal-header">
         <h3 class="modal-title">Agregar Clientes</h3>
       </div>
@@ -110,6 +104,7 @@
                 <option value="E">E</option>
                 <option value="V">V</option>
                 <option value="J">J</option>
+                <option value="G">G</option>
               </select>
             </div>
             <div class="col-xl-9">
@@ -127,7 +122,7 @@
                    required>
           </div>
           <div class="col-md-4">
-            <select name="" id="" class="form-control">
+            <select name="" data-ng-model="user.series" id="" class="form-control">
               <option value="1">Sin Impuesto</option>
               <option value="2">Con Impuesto</option>
             </select>

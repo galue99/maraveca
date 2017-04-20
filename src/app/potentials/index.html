@@ -30,23 +30,22 @@
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Equipment</th>
-                <th>Comments</th>
                 <th>Fecha</th>
                 <th>Actions</th>
               </tr>
               </thead>
               <tbody>
-              <tr ng-repeat="user in users">
-                <td>{{user.first_name}}</td>
+              <tr ng-repeat="user in users" ng-if="user.address != null">
+                <td>{{user.first_name}} {{user.last_name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.phone}}</td>
                 <td>{{user.equipment}}</td>
-                <td>{{user.comments}}</td>
                 <td>{{user.date_joined | date:'dd/MM/yyyy h:mma'}}</td>
                 <td>
-                  <div class="btn-group margin-inline">
-                    <button type="button" class="btn btn-sm btn-small btn-primary btn-block" data-ng-click="editClient(user)"><i class="fa fa-pencil"></i></button>
-                    <button type="button" class="btn btn-sm btn-small btn-danger btn-block" data-ng-click="deleteClient(user)"><i class="fa fa-remove"></i></button>
+                  <div class="btn-group btn-group-xs">
+                    <button type="button" class="btn btn-success" data-ng-click="AddClient(user)" title="Enviar a Cliente"><i class="fa fa-paper-plane"></i></button>
+                    <button type="button" class="btn btn-primary" data-ng-click="editClient(user)" title="Editar Cliente Potencial"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-danger" data-ng-click="deleteClient(user)" title="Eliminar Cliente Potencial"><i class="fa fa-remove"></i></button>
                   </div>
                 </td>
               </tr>
@@ -70,37 +69,166 @@
       </div>
       <div class="modal-body">
         <div class="form-group row">
-          <div class="col-xl-6">
-            <input type="text" name="nombre" data-ng-model="user.first_name" class="form-control" placeholder="Nombre Completo" required>
+          <div class="col-xl-4">
+            <label for="">Nombre:</label>
+            <input type="text" name="nombre" data-ng-model="user.first_name" class="form-control" placeholder="Nombre" required>
           </div>
-          <div class="col-xl-6">
+          <div class="col-xl-4">
+            <label for="">Apellido:</label>
+            <input type="text" name="lastname" data-ng-model="user.last_name" class="form-control" placeholder="Apellido" required>
+          </div>
+          <div class="col-xl-4">
+            <label for="">Email:</label>
             <input type="text" name="email" data-ng-model="user.email" class="form-control" placeholder="Email" required>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-xl-12">
+            <label for="">Dirección:</label>
             <textarea name="address" data-ng-model="user.address" class="form-control" placeholder="Direccion" required></textarea>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-xl-6">
+            <label for="">Equipo:</label>
             <input type="text" name="equipmen" data-ng-model="user.equipment" class="form-control" placeholder="Equipo" required>
           </div>
           <div class="col-md-6">
+            <label for="">Servicios:</label>
             <input type="text" name="service" data-ng-model="user.service" class="form-control" placeholder="Servicios" required>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-xl-6">
+            <label for="">Télefono:</label>
             <input type="text" name="phone" data-ng-model="user.phone" class="form-control" placeholder="Telefono" required>
           </div>
           <div class="col-md-6">
+            <label for="">Télefono 2:</label>
             <input type="text" name="phone2" data-ng-model="user.phone2" class="form-control" placeholder="Telefono1" required>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-xl-12">
+            <label for="">Comentarios:</label>
             <textarea name="address" data-ng-model="user.comments" class="form-control" placeholder="Comentarios"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success pull-left" type="button"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar SMS</button>
+        <button class="btn btn-warning pull-left" type="button"><i class="fa fa-envelope" aria-hidden="true"></i> Enviar Email</button>
+        <button class="btn btn-primary" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Guardar</button>
+        <button class="btn btn-danger" type="button" ng-click="cancel()"><i class="fa fa-times" aria-hidden="true"></i> Cancelar</button>
+      </div>
+    </form>
+  </script>
+
+</div>
+
+
+<div>
+  <script type="text/ng-template" id="myModalContentAdd.html">
+    <form id="client" name="clientForm" ng-submit="ok(clientForm)" novalidate>
+      <div class="modal-header">
+        <h3 class="modal-title">Agregar Clientes</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row">
+          <div class="col-xl-4">
+            <label for="">Nombre:</label>
+            <input type="text" name="nombre" data-ng-model="user.first_name"
+                   class="form-control"
+                   placeholder="Nombres"
+                   required>
+          </div>
+          <div class="col-xl-4">
+            <label for="">Apellido:</label>
+            <input type="text" name="nombre" data-ng-model="user.last_name"
+                   class="form-control"
+                   placeholder="Apellidos"
+                   required>
+          </div>
+          <div class="col-xl-4">
+            <label for="">Email:</label>
+            <input id="validation-email"
+                   class="form-control"
+                   placeholder="Email"
+                   ng-model="user.email"
+                   name="validation[email]"
+                   type="text"
+                   data-validation="[EMAIL]" required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-12">
+            <label for="">Dirección:</label>
+            <textarea name="address" data-ng-model="user.address"
+                      class="form-control"
+                      placeholder="Direccion"
+                      required></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-4 rowlla">
+
+            <div class="col-xl-3">
+              <label for="">Tipo:</label>
+              <select name="type_dni" ng-model="user.type_dni" class="form-control" required>
+                <option value="E">E</option>
+                <option value="V">V</option>
+                <option value="J">J</option>
+                <option value="G">G</option>
+              </select>
+            </div>
+            <div class="col-xl-9">
+              <label for="">Identificación:</label>
+              <input type="text" name="dni" data-ng-model="user.dni"
+                     class="form-control"
+                     placeholder="Cedula o Rif"
+                     required>
+            </div>
+
+          </div>
+          <div class="col-md-4">
+            <label for="">Fecha de Nacimiento:</label>
+            <input type="date" name="birthdate" data-ng-model="user.birthdate"
+                   class="form-control"
+                   placeholder="Fecha de nacimiento"
+                   required>
+          </div>
+          <div class="col-md-4">
+            <label for="">Serie:</label>
+            <select name="series" id="" data-ng-model="user.series" class="form-control">
+              <option value="1">Sin Impuesto</option>
+              <option value="2">Con Impuesto</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-6">
+            <label for="">Télefono:</label>
+            <input type="text" name="phone" data-ng-model="user.phone"
+                   class="form-control"
+                   placeholder="Telefono"
+                   required>
+          </div>
+          <div class="col-md-6">
+            <label for="">Télefono 2:</label>
+            <input type="text" name="phone2" data-ng-model="user.phone2"
+                   class="form-control"
+                   placeholder="Telefono1"
+                   required>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-xl-12">
+            <label for="">Comentarios:</label>
+            <textarea name="address" data-ng-model="user.comments"
+                      class="form-control"
+                      placeholder="Comentarios">
+
+            </textarea>
           </div>
         </div>
       </div>

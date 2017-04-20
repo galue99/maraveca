@@ -86,6 +86,33 @@
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
 
+
+    $scope.AddClient = function (user) {
+
+      var modalInstance = $uibModal.open({
+        animation: $scope.animationsEnabled,
+        templateUrl: 'myModalContentAdd.html',
+        controller: 'PotentialAddClientController',
+        size: 'lg',
+        resolve: {
+          user: function () {
+            return user;
+          }
+        }
+
+      });
+
+      modalInstance.result.then(function (selectedItem) {
+        vm.init();
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    $scope.toggleAnimation = function () {
+      $scope.animationsEnabled = !$scope.animationsEnabled;
+    };
+
     $scope.deleteClient = function (user) {
       sweet.show({
         title: 'Confirmar',

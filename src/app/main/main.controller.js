@@ -20,6 +20,7 @@
     }).then(function successCallback(response) {
         $scope.users = response.data;
         $scope.clients_potentials = response.data;
+        console.log(response);
       $(".fakeloader").fadeOut();
       // this callback will be called asynchronously
       // when the response is available

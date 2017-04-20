@@ -60,7 +60,7 @@
     };
 
 
-    $scope.editClient = function (user) {
+    $scope.editClient = function (service) {
 
       var modalInstance = $uibModal.open({
         animation: $scope.animationsEnabled,
@@ -68,8 +68,8 @@
         controller: 'ServiceEditController',
         size: 'lg',
         resolve: {
-          user: function () {
-            return user;
+          service: function () {
+            return service;
           }
         }
 
@@ -86,7 +86,7 @@
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
 
-    $scope.deleteClient = function (user) {
+    $scope.deleteClient = function (service) {
       sweet.show({
         title: 'Confirmar',
         text: 'Desea Eliminar este Servicio?',
@@ -101,7 +101,7 @@
           sweet.show('Eliminado!', 'El Servicio ha sido eliminado.', 'success');
           $http({
             method: 'DELETE',
-            url: SERVER + '/service/' + user.id + '/',
+            url: SERVER + '/service/' + service.id + '/',
             headers: {
               'Authorization': 'Token ' + token
             }

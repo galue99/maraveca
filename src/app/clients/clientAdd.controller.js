@@ -16,25 +16,29 @@
 
     $scope.user = {};
 
-    $scope.ok = function () {
+    $scope.ok = function (form) {
       //$(".fakeloader").show();
-      $http({
-        method: 'POST',
-        url: SERVER + '/client/',
-        data: $scope.user,
-        headers: {
-          'Authorization': 'Token ' + token
-        }
-      }).then(function successCallback(response) {
-        $uibModalInstance.close();
 
-        // this callback will be called asynchronously
-        // when the response is available
-      }, function errorCallback(response) {
-        $(".fakeloader").fadeOut();
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-      });
+      if(form.$valid){
+        $http({
+          method: 'POST',
+          url: SERVER + '/client/',
+          data: $scope.user,
+          headers: {
+            'Authorization': 'Token ' + token
+          }
+        }).then(function successCallback(response) {
+          $uibModalInstance.close();
+
+          // this callback will be called asynchronously
+          // when the response is available
+        }, function errorCallback(response) {
+          $(".fakeloader").fadeOut();
+          // called asynchronously if an error occurs
+          // or server returns response with an error status.
+        });
+      }
+
     };
 
     $scope.cancel = function () {

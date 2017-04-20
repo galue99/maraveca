@@ -90,7 +90,7 @@
             </tr>
             </tfoot>
             <tbody>
-            <tr ng-repeat="user in users">
+            <tr ng-repeat="user in users" data-ng-if="user.address !== null">
               <td>{{user.first_name}}</td>
               <td>{{user.address}}</td>
               <td>{{user.email}}</td>

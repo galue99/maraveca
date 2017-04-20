@@ -62,11 +62,7 @@
 
     $scope.ok = function () {
       //$(".fakeloader").show();
-      $scope.services.additional_id = 1;
-      $scope.services.cut_days = 20;
-      $scope.services.cut_method = 20;
-      $scope.services.install_type = 'in';
-      $scope.services.monthly_type = 'ot';
+
       $http({
         method: 'POST',
         url: SERVER + '/service/',
