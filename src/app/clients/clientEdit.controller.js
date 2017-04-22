@@ -14,6 +14,7 @@
     var token = localStorage.getItem("satellizer_token");
 
     $scope.user = user;
+    $scope.user.series = parseInt(user.series);
 
     $scope.ok = function () {
       $(".fakeloader").show();

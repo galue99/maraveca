@@ -14,19 +14,17 @@
     var token = localStorage.getItem("satellizer_token");
 
     $scope.user = user;
-
     $scope.ok = function () {
       $(".fakeloader").show();
       $http({
-        method: 'POST',
-        url: SERVER + '/client/',
+        method: 'PUT',
+        url: SERVER + '/potential/' + user.id +'/convert-to-client/',
         data: $scope.user,
         headers: {
           'Authorization': 'Token ' + token
         }
       }).then(function successCallback(response) {
         $uibModalInstance.close();
-
         // this callback will be called asynchronously
         // when the response is available
       }, function errorCallback(response) {
